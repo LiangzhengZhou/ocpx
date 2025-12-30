@@ -1,0 +1,32 @@
+includes:
+- configs/hardness/base.yml
+
+model:
+  name: forcenet
+  num_interactions: 5
+  cutoff: 6.0
+  basis: "sphallmul"
+  ablation: "none"
+  depth_mlp_edge: 2
+  depth_mlp_node: 1
+  activation_str: "swish"
+  decoder_activation_str: "swish"
+  feat: "full"
+  hidden_channels: 512
+  decoder_hidden_channels: 512
+  max_n: 3
+  otf_graph: True
+
+optim:
+  batch_size: 8
+  eval_batch_size: 8
+  num_workers: 4
+  lr_initial: 0.0005
+  lr_gamma: 0.1
+  lr_milestones:
+    - 15625
+    - 25000
+    - 31250
+  warmup_steps: 9375
+  warmup_factor: 0.2
+  max_epochs: 20
